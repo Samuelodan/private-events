@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    event = Event.find(params[:id])
+    event = Event.find(params[:event_id])
     attendance = current_user.attendances.build(attended_event: event)
 
     if attendance.save
