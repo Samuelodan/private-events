@@ -15,7 +15,7 @@ class EventsController < ApplicationController
     @event = current_user.created_events.build(event_params)
 
     if @event.save
-      redirect_to event_path(params[:id])
+      redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
     end
