@@ -1,2 +1,6 @@
 <h1><%= @event.title %></h1>
 <p><%= @event.body %></p>
+
+<% if @event.attendees.include?(current_user) %>
+ <%= button_to "Attend Event", attendances_path %>
+<% end %>
