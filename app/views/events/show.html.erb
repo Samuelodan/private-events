@@ -6,6 +6,14 @@
     <%= button_to "Attend Event", attendances_path, params: { event_id: @event.id } %>
   <% end %>
 <% end %>
+<div>
+  <h3>Attendees:</h3>
+  <ul>
+    <% @event.attendees.each do |attendees| %>
+      <li><%= link_to attendees.username, attendees %></li>
+    <% end %>
+  </ul>
+</div>
 
 <% if user_signed_in?  %>
   <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete %>
