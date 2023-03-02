@@ -8,11 +8,23 @@
 
 <div>
   <h3>Attended Events:</h3>
-  <ul>
-    <% @user.attended_events.each do |att_event| %>
-      <li><%= link_to att_event.title, att_event %></li>
-    <% end %>
-  </ul>
+  <div>
+    <h4>Past:</h4>
+    <ul>
+      <% @user.attended_events.where("date < ?", DateTime.now).each do |event| %>
+        <li><%= link_to event.title, event %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <h4>Upcoming:</h4>
+    <ul>
+      <% @user.attended_events.where("date > ?", DateTime.now).each do |event| %>
+        <li><%= link_to event.title, event %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <% if user_signed_in?  %>
