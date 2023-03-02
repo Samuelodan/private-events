@@ -1,12 +1,27 @@
 <h1>All Events</h1>
 
-<ul>
-  <% @events.each do |event| %>
-    <li>
-      <%= link_to event.title, event %>
-    </li>
-  <% end %>
-</ul>
+<div>
+  <h3>Past:</h3>
+  <ul>
+    <% Event.past.each do |event| %>
+      <li>
+        <%= link_to event.title, event %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <h3>Upcoming:</h3>
+  <ul>
+    <% Event.upcoming.each do |event| %>
+      <li>
+        <%= link_to event.title, event %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 <% if user_signed_in? %>
   <br>
     <%= button_to "Create New Event", new_event_path, method: :get %>
