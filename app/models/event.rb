@@ -8,6 +8,6 @@ class Event < ApplicationRecord
   end
 
   def self.upcoming
-    where("date < ?", DateTime.now)
+    where("date > ?", DateTime.now)
   end
 end
