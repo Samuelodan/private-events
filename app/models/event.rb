@@ -3,11 +3,6 @@ class Event < ApplicationRecord
   has_many :attendances, foreign_key: "attended_event_id", dependent: :destroy
   has_many :attendees, through: :attendances, class_name: "User", dependent: :destroy
 
-  def self.past
-    where("date < ?", DateTime.now)
-  end
-
-  def self.upcoming
-    where("date > ?", DateTime.now)
-  end
+  scope :past, -> { where("date < ?", DateTime.now) }
+  scope :upcoming, -> { where("date > ?", DateTime.now) }
 end
