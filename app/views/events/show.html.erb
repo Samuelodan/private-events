@@ -2,6 +2,10 @@
 <p><%= @event.body %></p>
 <h4>Date: <%= @event.date %></h4>
 
+<% if @event.creator == current_user %>
+  <%= link_to "Edit Event", edit_event_path(@event) %>
+<% end %>
+
 <% unless @event.attendees.include?(current_user) %>
   <% unless current_user == @event.creator %>
     <%= button_to "Attend Event", attendances_path, params: { event_id: @event.id } %>
